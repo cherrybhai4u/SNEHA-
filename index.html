@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sneha</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+            text-align: center;
+            color: #fff;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 3em;
+            margin-top: 20vh;
+            animation: fadeIn 3s;
+        }
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1000;
+        }
+        .popup h2 {
+            margin-bottom: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #ff69b4;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .quote {
+            display: none;
+            font-size: 1.5em;
+            margin-top: 20px;
+            animation: fadeIn 2s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .emoji {
+            position: absolute;
+            font-size: 2em;
+            animation: drop 5s infinite;
+        }
+        @keyframes drop {
+            0% { transform: translateY(-100px); }
+            100% { transform: translateY(100vh); }
+        }
+    </style>
+</head>
+<body>
+    <h1 id="main-message">🎉 Happy Birthday Sneha 🎉</h1>
+
+    <div id="popup" class="popup">
+        <h2>Will you be my best friend forever? 💖</h2>
+        <button class="button" onclick="showQuotes('Yes! Always!')">Yes</button>
+        <button class="button" onclick="showQuotes('Forever!')">Forever</button>
+    </div>
+
+    <div id="quote" class="quote">
+        <p id="quote-message"></p>
+    </div>
+
+    <script>
+        const emojis = ['❤️', '💖', '💕', '🌟', '🥳'];
+
+        function createEmojiRain() {
+            const emoji = document.createElement('div');
+            emoji.className = 'emoji';
+            emoji.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            emoji.style.left = Math.random() * window.innerWidth + 'px';
+            emoji.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(emoji);
+            setTimeout(() => emoji.remove(), 5000);
+        }
+
+        setInterval(createEmojiRain, 300);
+
+        window.onload = () => {
+            setTimeout(() => {
+                document.getElementById('main-message').style.display = 'none';
+                document.getElementById('popup').style.display = 'block';
+            }, 3000);
+        };
+
+        function showQuotes(choice) {
+            document.getElementById('popup').style.display = 'none';
+            const message = choice === 'Yes! Always!' ? 
+                "True friendship is like a star, always shining." :
+                "Forever is a promise, and you are my forever friend.";
+
+            document.getElementById('quote-message').textContent = message;
+            document.getElementById('quote').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
